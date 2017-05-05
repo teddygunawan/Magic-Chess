@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SwinGameSDK;
 
 namespace MyGame
@@ -7,8 +8,10 @@ namespace MyGame
     {
         public static void Main()
         {
-            //Open the game window
-            SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
+			
+			List<Coordinate> someCoordinate = new List<Coordinate>();
+			//Open the game window
+			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
             SwinGame.ShowSwinGameSplashScreen();
             
             //Run the game loop
@@ -20,9 +23,18 @@ namespace MyGame
                 //Clear the screen and draw the framerate
                 SwinGame.ClearScreen(Color.White);
                 SwinGame.DrawFramerate(0,0);
-                
+
+				foreach (Coordinate c in someCoordinate)
+					c.Draw ();
+
+				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());
+					someCoordinate.Add (xy);
+				}
+
                 //Draw onto the screen
                 SwinGame.RefreshScreen(60);
+
             }
         }
     }
