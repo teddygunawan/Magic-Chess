@@ -74,6 +74,8 @@
   <ItemGroup>
     <Compile Include="src\GameMain.cs" />
     <Compile Include="Coordinate.cs" />
+    <Compile Include="Piece.cs" />
+    <Compile Include="Cell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -165,6 +167,7 @@
     <WinLibraryFiles Include="lib\win\smpeg.dll" />
     <WinLibraryFiles Include="lib\win\swingame.rc" />
     <WinLibraryFiles Include="lib\win\zlib1.dll" />
+    <None Include="Resources\images\board.png" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />

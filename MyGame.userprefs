@@ -5,22 +5,12 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\GameMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cell.cs">
     <Files>
-      <File FileName="src\GameMain.cs" Line="3" Column="14" />
-      <File FileName="Coordinate.cs" Line="23" Column="18" />
+      <File FileName="src\GameMain.cs" Line="37" Column="5" />
+      <File FileName="Coordinate.cs" Line="23" Column="4" />
+      <File FileName="Piece.cs" Line="8" Column="3" />
+      <File FileName="Cell.cs" Line="6" Column="21" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="MyGame" expanded="True">
-            <Node name="MyGame" expanded="True">
-              <Node name="References" expanded="True" />
-              <Node name="src" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
 </Properties>
