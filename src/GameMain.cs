@@ -6,49 +6,14 @@ namespace MyGame
 {
     public class GameMain
     {
-		static Cell [,] boardCell = new Cell [8, 8];
 		public static void LoadResources ()
 		{
-			Bitmap Board = SwinGame.LoadBitmapNamed ("Board", "board.png");
+			
 		}
 
 		public static void InitializeGame ()
 		{
-			int x = 0, y = 0;
-			bool check = true;
-			for (int i = 0; i < 8; i++) {
-				for (int k = 0; k < 8; k++) {
-					if (i % 2 == 0) {
-						if (check) {
-							boardCell [i, k] = new Cell (Color.White, x, y);
-							check = false;
-						} else {
-							boardCell [i, k] = new Cell (Color.Brown, x, y);
-							check = true;
-						}
-					} 
-					else 
-					{
-						if (check) {
-								boardCell [i, k] = new Cell (Color.Brown, x, y);
-								check = false;
-							} else {
-								boardCell [i, k] = new Cell (Color.White, x, y);
-								check = true;
-							}
-					}
-					/*if ( i % 2 == 0 && k % 2 == 0) {
-						boardCell [i, k] = new Cell (Color.White, x, y);
-					} else {
-						boardCell [i, k] = new Cell (Color.Brown, x , y);
-					}*/
-					boardCell [i, k].Draw ();
-					x += 60;
-				}
-				x = 0;
-				y += 60;
-			}
-
+			
 		}
 
 
@@ -56,9 +21,10 @@ namespace MyGame
 		{
 			
 		}
+
         public static void Main()
         {
-			
+			Board gameBoard = new Board ();
 			List<Coordinate> someCoordinate = new List<Coordinate>();
 			//Open the game window
 			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
@@ -75,7 +41,7 @@ namespace MyGame
                 SwinGame.DrawFramerate(0,0);
 
 				InitializeGame ();
-				SwinGame.DrawBitmap ("board.png", 0, 0);
+				gameBoard.Draw ();
 				foreach (Coordinate c in someCoordinate)
 					c.Draw ();
 

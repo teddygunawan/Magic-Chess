@@ -19,14 +19,14 @@ namespace MyGame
 
 		public void Draw ()
 		{
-			SwinGame.FillRectangle(Color, X, Y, 60, 60);
+			SwinGame.FillRectangle (Color, X, Y, 60, 60);
 			SwinGame.DrawRectangle (Color.Black, X, Y, 60, 60);
 		}
 
-
-
-
-
+		public void SelectedCell ()
+		{
+			
+		}
 
 		public Color Color { 
 			get { return _clr;}
