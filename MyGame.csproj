@@ -76,6 +76,13 @@
     <Compile Include="Coordinate.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Bishop.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="King.cs" />
+    <Compile Include="Knight.cs" />
+    <Compile Include="Pawn.cs" />
+    <Compile Include="Queen.cs" />
+    <Compile Include="Rook.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
