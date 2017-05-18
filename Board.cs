@@ -5,6 +5,7 @@ namespace MyGame
 	public class Board
 	{
 		static Cell [,] _cell = new Cell [8, 8];
+
 		public Board ()
 		{
 			int x = 0, y = 0;
@@ -36,10 +37,18 @@ namespace MyGame
 			}
 		}
 
+		public void InitializePiece ()
+		{
+			
+		}
+
+
 		public void Draw ()
 		{
 			foreach (Cell c in _cell)
 				c.Draw();
 		}
+
+
 	}
 }

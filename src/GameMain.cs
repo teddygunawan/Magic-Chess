@@ -6,6 +6,8 @@ namespace MyGame
 {
     public class GameMain
     {
+		Player [] player = new Player [2];
+
 		public static void LoadResources ()
 		{
 			
