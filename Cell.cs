@@ -19,8 +19,8 @@ namespace MyGame
 
 		public void Draw ()
 		{
-			SwinGame.FillRectangle (Color, X, Y, 60, 60);
-			SwinGame.DrawRectangle (Color.Black, X, Y, 60, 60);
+			SwinGame.FillRectangle (Color, X, Y, 70, 70);
+			SwinGame.DrawRectangle (Color.Black, X, Y, 70, 70);
 		}
 
 		public void SelectedCell ()

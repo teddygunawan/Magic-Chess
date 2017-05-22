@@ -30,10 +30,10 @@ namespace MyGame
 							check = true;
 						}
 					}
-					x += 60;
+					x += 70;
 				}
 				x = 0;
-				y += 60;
+				y += 70;
 			}
 		}
 
