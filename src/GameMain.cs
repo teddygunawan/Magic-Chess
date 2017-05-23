@@ -6,8 +6,8 @@ namespace MyGame
 {
     public class GameMain
     {
-		Player [] player = new Player [2];
-
+		static Board gameBoard;
+		static int turn = 0;
 		public static void LoadResources ()
 		{
 			
@@ -15,6 +15,7 @@ namespace MyGame
 
 		public static void InitializeGame ()
 		{
+			gameBoard = new Board ();
 			GameResources.LoadPieces ();
 		}
 
@@ -24,11 +25,23 @@ namespace MyGame
 			
 		}
 
+		public static void HandleMoveInput ()
+		{
+			gameBoard.SelectCell (SwinGame.MousePosition (), turn);
+			while (false == SwinGame.WindowCloseRequested ()) {
+				SwinGame.ProcessEvents ();
+
+				if(SwinGame.MouseClicked(MouseButton.LeftButton))
+					
+				SwinGame.RefreshScreen (60);
+			}
+		}
+
         public static void Main()
         {
-			Board gameBoard = new Board ();
 			List<Coordinate> someCoordinate = new List<Coordinate>();
-			GameResources.LoadPieces ();
+			InitializeGame ();
+
 			//Open the game window
 			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
 			//SwinGame.ShowSwinGameSplashScreen ();
@@ -38,17 +51,22 @@ namespace MyGame
             {
                 //Fetch the next batch of UI interaction
                 SwinGame.ProcessEvents();
-				LoadResources ();
+
                 //Clear the screen and draw the framerate
 				SwinGame.ClearScreen(Color.Black);
                 SwinGame.DrawFramerate(0,0);
 
 				gameBoard.Draw ();
-				SwinGame.DrawBitmap (GameResources.PieceImage ("Q"), 140, 140);
+				SwinGame.DrawBitmap (GameResources.PieceImage ("QW"), 140, 140);
 				foreach (Coordinate c in someCoordinate)
 					c.Draw ();
 				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+					HandleMoveInput();
+				}
+
+
+				if (SwinGame.MouseClicked (MouseButton.RightButton)) {
 					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());
 					someCoordinate.Add (xy);
 				}

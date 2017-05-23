@@ -5,6 +5,7 @@ namespace MyGame
 	public class Board
 	{
 		static Cell [,] _cell = new Cell [8, 8];
+		static Player [] _player = new Player[2];
 
 		public Board ()
 		{
@@ -35,6 +36,8 @@ namespace MyGame
 				x = 0;
 				y += 70;
 			}
+			_player [0] = new Player ("John");
+			_player [1] = new Player ("Cena");
 		}
 
 		public void InitializePiece ()
@@ -49,6 +52,24 @@ namespace MyGame
 				c.Draw();
 		}
 
-
+		public void SelectCell (Point2D clicked, int p)
+		{
+			foreach (Piece c in _player [p].PieceList) {
+				c.Cell.
+				if (clicked.X > c.Cell. && clicked.X < c.X + 70) {
+					if (clicked.Y > c.Y && clicked.Y < c.Y + 70) {
+						SwinGame.FillRectangle (Color.Yellow, c.X, c.Y, 70, 70);
+					}
+				}
+			}
+			/*
+			foreach (Cell c in _cell) {
+				if (clicked.X > c.X && clicked.X < c.X + 70) {
+					if (clicked.Y > c.Y && clicked.Y < c.Y + 70) {
+						SwinGame.FillRectangle (Color.Yellow, c.X, c.Y, 70, 70);
+					}
+				}
+			}*/
+		}
 	}
 }

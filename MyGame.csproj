@@ -177,8 +177,13 @@
     <WinLibraryFiles Include="lib\win\swingame.rc" />
     <WinLibraryFiles Include="lib\win\zlib1.dll" />
     <None Include="Resources\images\board.png" />
-    <None Include="Resources\images\Queen.png" />
     <None Include="Resources\images\Background.jpeg" />
+    <None Include="Resources\images\BishopW.png" />
+    <None Include="Resources\images\KingW.png" />
+    <None Include="Resources\images\KnightW.png" />
+    <None Include="Resources\images\PawnW.png" />
+    <None Include="Resources\images\QueenW.png" />
+    <None Include="Resources\images\RookW.png" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />

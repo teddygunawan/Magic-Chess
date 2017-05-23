@@ -26,11 +26,11 @@ namespace MyGame
 			_lastRemoved = piece;
 		}
 
-		List<Piece> PieceList { 
+		public List<Piece> PieceList { 
 			get { return _piece;}
 		}
 
-		Piece LastRemoved{
+		public Piece LastRemoved{
 			get { return _lastRemoved;}
 			set { _lastRemoved = value;}
 		}
