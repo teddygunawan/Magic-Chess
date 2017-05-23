@@ -15,7 +15,7 @@ namespace MyGame
 
 		public static void InitializeGame ()
 		{
-			
+			GameResources.LoadPieces ();
 		}
 
 
@@ -28,9 +28,7 @@ namespace MyGame
         {
 			Board gameBoard = new Board ();
 			List<Coordinate> someCoordinate = new List<Coordinate>();
-
-			Bitmap a = SwinGame.LoadBitmap (SwinGame.PathToResource("Piece.png", ResourceKind.BitmapResource));
-			SwinGame.BitmapSetCellDetails (a, 80, 100, 6, 2, 12);
+			GameResources.LoadPieces ();
 			//Open the game window
 			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
 			//SwinGame.ShowSwinGameSplashScreen ();
@@ -45,12 +43,11 @@ namespace MyGame
 				SwinGame.ClearScreen(Color.Black);
                 SwinGame.DrawFramerate(0,0);
 
-				InitializeGame ();
 				gameBoard.Draw ();
-				SwinGame.DrawCell(a, 3, 200, 200);
+				SwinGame.DrawBitmap (GameResources.PieceImage ("Q"), 140, 140);
 				foreach (Coordinate c in someCoordinate)
 					c.Draw ();
-
+				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
 					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());
 					someCoordinate.Add (xy);

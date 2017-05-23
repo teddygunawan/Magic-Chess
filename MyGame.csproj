@@ -84,6 +84,7 @@
     <Compile Include="Queen.cs" />
     <Compile Include="Rook.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="GameResources.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -176,7 +177,8 @@
     <WinLibraryFiles Include="lib\win\swingame.rc" />
     <WinLibraryFiles Include="lib\win\zlib1.dll" />
     <None Include="Resources\images\board.png" />
-    <None Include="Resources\images\Piece.png" />
+    <None Include="Resources\images\Queen.png" />
+    <None Include="Resources\images\Background.jpeg" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />
