@@ -4,7 +4,7 @@ namespace MyGame
 {
 	public class King: Piece
 	{
-		public King (Color clr, Cell[,] cl): base(clr, cl)
+		public King (Color clr, Cell cl): base(clr, cl)
 		{
 			
 		}

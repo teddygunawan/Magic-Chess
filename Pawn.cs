@@ -4,7 +4,7 @@ namespace MyGame
 {
 	public class Pawn: Piece
 	{
-		public Pawn (Color clr, Cell[,] cl): base(clr, cl)
+		public Pawn (Color clr, Cell cl): base(clr, cl)
 		{
 
 		}

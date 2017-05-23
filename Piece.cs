@@ -5,9 +5,9 @@ namespace MyGame
 	public abstract class Piece
 	{
 		Color _clr;
-		Cell[,] _cell;
+		Cell _cell;
 
-		public Piece (Color clr, Cell[,] cl)
+		public Piece (Color clr, Cell cl)
 		{
 			_clr = clr;
 			_cell = cl;
@@ -22,7 +22,7 @@ namespace MyGame
 			set { _clr = value;}
 		}
 
-		public Cell[,] Cell { 
+		public Cell Cell { 
 			get { return _cell;}
 			set { _cell = value;}
 		}

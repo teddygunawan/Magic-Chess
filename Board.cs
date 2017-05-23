@@ -36,8 +36,6 @@ namespace MyGame
 				x = 0;
 				y += 70;
 			}
-			_player [0] = new Player ("John");
-			_player [1] = new Player ("Cena");
 		}
 
 		public void InitializePiece ()
@@ -54,11 +52,10 @@ namespace MyGame
 
 		public void SelectCell (Point2D clicked, int p)
 		{
-			foreach (Piece c in _player [p].PieceList) {
-				c.Cell.
-				if (clicked.X > c.Cell. && clicked.X < c.X + 70) {
-					if (clicked.Y > c.Y && clicked.Y < c.Y + 70) {
-						SwinGame.FillRectangle (Color.Yellow, c.X, c.Y, 70, 70);
+			foreach (Piece c in _player[p].PieceList) {
+				if (clicked.X > c.Cell.X && clicked.X < c.Cell.X + 70) {
+					if (clicked.Y > c.Cell.Y && clicked.Y < c.Cell.Y + 70) {
+						SwinGame.FillRectangle (Color.Yellow, c.Cell.X, c.Cell.Y, 70, 70);
 					}
 				}
 			}

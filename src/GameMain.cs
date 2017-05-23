@@ -30,7 +30,7 @@ namespace MyGame
 			gameBoard.SelectCell (SwinGame.MousePosition (), turn);
 			while (false == SwinGame.WindowCloseRequested ()) {
 				SwinGame.ProcessEvents ();
-
+				gameBoard.SelectCell (SwinGame.MousePosition (), turn);
 				if(SwinGame.MouseClicked(MouseButton.LeftButton))
 					
 				SwinGame.RefreshScreen (60);
@@ -62,7 +62,8 @@ namespace MyGame
 					c.Draw ();
 				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-					HandleMoveInput();
+					//HandleMoveInput();
+					gameBoard.SelectCell (SwinGame.MousePosition (), turn);
 				}
 
 
