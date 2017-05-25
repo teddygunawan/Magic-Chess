@@ -8,33 +8,18 @@ namespace MyGame
     {
 		static Board gameBoard;
 		static int turn = 0;
-		public static void LoadResources ()
-		{
-			
-		}
-
 		public static void InitializeGame ()
 		{
-			gameBoard = new Board ();
 			GameResources.LoadPieces ();
+
+			gameBoard = new Board ();
+			gameBoard.InitializePiece ("John");
 		}
 
 
 		public static void DrawGame ()
 		{
 			
-		}
-
-		public static void HandleMoveInput ()
-		{
-			gameBoard.SelectCell (SwinGame.MousePosition (), turn);
-			while (false == SwinGame.WindowCloseRequested ()) {
-				SwinGame.ProcessEvents ();
-				gameBoard.SelectCell (SwinGame.MousePosition (), turn);
-				if(SwinGame.MouseClicked(MouseButton.LeftButton))
-					
-				SwinGame.RefreshScreen (60);
-			}
 		}
 
         public static void Main()
@@ -62,7 +47,6 @@ namespace MyGame
 					c.Draw ();
 				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-					//HandleMoveInput();
 					gameBoard.SelectCell (SwinGame.MousePosition (), turn);
 				}
 

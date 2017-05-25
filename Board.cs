@@ -38,9 +38,15 @@ namespace MyGame
 			}
 		}
 
-		public void InitializePiece ()
+		public void InitializePiece (string name)
 		{
-			
+			_player [0] = new Player (name);
+			_player [1] = new Player ("Computer");
+
+			for (int i = 0; i < 8; i++) {
+				_player [0].AddPiece (new Pawn (Color.White, _cell [1, i]));
+				_player [1].AddPiece (new Pawn (Color.Black, _cell [6, i]));
+				}
 		}
 
 
@@ -48,17 +54,39 @@ namespace MyGame
 		{
 			foreach (Cell c in _cell)
 				c.Draw();
+
+			foreach (Piece c in _player [0].PieceList)
+				c.Draw ();
+			foreach (Piece c in _player [1].PieceList)
+				c.Draw ();
 		}
 
-		public void SelectCell (Point2D clicked, int p)
+		public void SelectCell (Point2D clicked, int turn)
 		{
-			foreach (Piece c in _player[p].PieceList) {
+			foreach (Piece c in _player[turn].PieceList) {
 				if (clicked.X > c.Cell.X && clicked.X < c.Cell.X + 70) {
 					if (clicked.Y > c.Cell.Y && clicked.Y < c.Cell.Y + 70) {
 						SwinGame.FillRectangle (Color.Yellow, c.Cell.X, c.Cell.Y, 70, 70);
+
+						while (false == SwinGame.WindowCloseRequested ()) {
+							SwinGame.ProcessEvents ();
+							if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+								foreach (Cell b in _cell) {
+									if (SwinGame.MouseX () > b.X && SwinGame.MouseX () < b.X + 70) {
+										if (SwinGame.MouseY () > b.Y && SwinGame.MouseY () < b.Y + 70) {
+											c.Move (b);
+											return;
+										}
+									}
+								}
+							}
+							SwinGame.RefreshScreen (60);
+						}
 					}
 				}
 			}
+
+
 			/*
 			foreach (Cell c in _cell) {
 				if (clicked.X > c.X && clicked.X < c.X + 70) {

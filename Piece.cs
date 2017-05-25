@@ -17,6 +17,10 @@ namespace MyGame
 
 		public abstract bool MoveRestriction (Point2D pt1, Point2D pt2);
 
+		public void Move (Cell cl)
+		{
+			_cell = cl;
+		}
 		public Color Color{
 			get { return _clr;}
 			set { _clr = value;}
