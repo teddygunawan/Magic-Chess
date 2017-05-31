@@ -7,13 +7,13 @@ namespace MyGame
     public class GameMain
     {
 		static Board gameBoard;
-		static int turn = 0;
+		static int turn = 1;
 		public static void InitializeGame ()
 		{
 			GameResources.LoadPieces ();
 
 			gameBoard = new Board ();
-			gameBoard.InitializePiece ("John");
+			gameBoard.InitializePlayer ("John");
 		}
 
 
@@ -42,14 +42,12 @@ namespace MyGame
                 SwinGame.DrawFramerate(0,0);
 
 				gameBoard.Draw ();
-				SwinGame.DrawBitmap (GameResources.PieceImage ("QW"), 140, 140);
 				foreach (Coordinate c in someCoordinate)
 					c.Draw ();
 				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
 					gameBoard.SelectCell (SwinGame.MousePosition (), turn);
 				}
-
 
 				if (SwinGame.MouseClicked (MouseButton.RightButton)) {
 					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());

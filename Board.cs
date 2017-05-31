@@ -38,15 +38,19 @@ namespace MyGame
 			}
 		}
 
-		public void InitializePiece (string name)
+		public void InitializePlayer (string name)
 		{
 			_player [0] = new Player (name);
 			_player [1] = new Player ("Computer");
 
 			for (int i = 0; i < 8; i++) {
-				_player [0].AddPiece (new Pawn (Color.White, _cell [1, i]));
-				_player [1].AddPiece (new Pawn (Color.Black, _cell [6, i]));
+				_player [0].AddPiece (new Pawn (Color.Black, _cell [1, i]));
+				_player [1].AddPiece (new Pawn (Color.White, _cell [6, i]));
 				}
+			for (int i = 0; i < 8; i += 7) {
+				_player [0].AddPiece (new Knight (Color.Black, _cell [0, i]));
+				_player [1].AddPiece (new Knight (Color.White, _cell [7, i]));
+			}
 		}
 
 
