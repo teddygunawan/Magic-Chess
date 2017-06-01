@@ -7,8 +7,7 @@ namespace MyGame
 		private Color _clr;
 		private int _x;
 		private int _y;
-		private int _width;
-		private int _length;
+		private int [] z;
 
 		public Cell (Color clr, int x, int y)
 		{

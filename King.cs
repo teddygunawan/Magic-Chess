@@ -17,9 +17,21 @@ namespace MyGame
 				SwinGame.DrawBitmap (GameResources.PieceImage ("KB"), Cell.X, Cell.Y);
 		}
 
-		public override bool MoveRestriction (Point2D pt1, Point2D pt2)
+		public override bool MoveRestriction (Cell destCell, Player [] _player)
 		{
-			return true;
+			if (destCell.Y == Cell.Y) {
+				if (destCell.X == Cell.X + 70 || destCell.X == Cell.X - 70)
+					return true;
+				else
+					return false;
+			} 
+			else if (destCell.Y == Cell.Y + 70 || destCell.Y == Cell.Y - 70) {
+				if (destCell.X == Cell.X + 70 || destCell.X == Cell.X - 70 || destCell.X == Cell.X)
+					return true;
+				else
+					return false;
+			}
+			return false;
 		}
 	}
 }

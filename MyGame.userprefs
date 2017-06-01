@@ -5,21 +5,21 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\GameMain.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Rook.cs">
     <Files>
-      <File FileName="src\GameMain.cs" Line="28" Column="22" />
-      <File FileName="Board.cs" Line="41" Column="31" />
-      <File FileName="Player.cs" Line="28" Column="3" />
+      <File FileName="src\GameMain.cs" Line="49" Column="53" />
+      <File FileName="Board.cs" Line="110" Column="8" />
+      <File FileName="Player.cs" Line="26" Column="26" />
       <File FileName="Coordinate.cs" Line="23" Column="4" />
-      <File FileName="Cell.cs" Line="34" Column="3" />
+      <File FileName="Cell.cs" Line="33" Column="3" />
       <File FileName="GameResources.cs" Line="29" Column="74" />
-      <File FileName="Piece.cs" Line="16" Column="30" />
-      <File FileName="Bishop.cs" Line="14" Column="4" />
-      <File FileName="King.cs" Line="17" Column="55" />
-      <File FileName="Knight.cs" Line="17" Column="55" />
-      <File FileName="Pawn.cs" Line="17" Column="54" />
-      <File FileName="Queen.cs" Line="17" Column="54" />
-      <File FileName="Rook.cs" Line="17" Column="54" />
+      <File FileName="Piece.cs" Line="18" Column="54" />
+      <File FileName="Pawn.cs" Line="42" Column="4" />
+      <File FileName="Knight.cs" Line="26" Column="19" />
+      <File FileName="King.cs" Line="32" Column="19" />
+      <File FileName="Bishop.cs" Line="47" Column="9" />
+      <File FileName="Rook.cs" Line="69" Column="23" />
+      <File FileName="Queen.cs" Line="20" Column="73" />
     </Files>
   </MonoDevelop.Ide.Workbench>
 </Properties>

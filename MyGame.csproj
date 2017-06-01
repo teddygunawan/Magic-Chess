@@ -178,18 +178,42 @@
     <WinLibraryFiles Include="lib\win\zlib1.dll" />
     <None Include="Resources\images\board.png" />
     <None Include="Resources\images\Background.jpeg" />
-    <None Include="Resources\images\BishopB.png" />
-    <None Include="Resources\images\BishopW.png" />
-    <None Include="Resources\images\KingB.png" />
-    <None Include="Resources\images\KingW.png" />
-    <None Include="Resources\images\KnightB.png" />
-    <None Include="Resources\images\KnightW.png" />
-    <None Include="Resources\images\PawnB.png" />
-    <None Include="Resources\images\PawnW.png" />
-    <None Include="Resources\images\QueenB.png" />
-    <None Include="Resources\images\QueenW.png" />
-    <None Include="Resources\images\RookB.png" />
-    <None Include="Resources\images\RookW.png" />
+    <None Include="Resources\images\BishopB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\BishopW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\KnightB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\KnightW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\PawnB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\PawnW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\RookB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\RookW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\KingB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\KingW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\QueenB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\QueenW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />

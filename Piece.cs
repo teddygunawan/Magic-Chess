@@ -15,7 +15,7 @@ namespace MyGame
 
 		public abstract void Draw ();
 
-		public abstract bool MoveRestriction (Point2D pt1, Point2D pt2);
+		public abstract bool MoveRestriction (Cell destCell, Player[] _player);
 
 		public void Move (Cell cl)
 		{

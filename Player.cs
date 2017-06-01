@@ -22,8 +22,8 @@ namespace MyGame
 
 		public void RemovePiece (Piece piece)
 		{
-			_piece.Remove (piece);
 			_lastRemoved = piece;
+			_piece.Remove (piece);
 		}
 
 		public List<Piece> PieceList { 

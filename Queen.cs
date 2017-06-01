@@ -17,7 +17,7 @@ namespace MyGame
 				SwinGame.DrawBitmap (GameResources.PieceImage ("QB"), Cell.X, Cell.Y);
 		}
 
-		public override bool MoveRestriction (Point2D pt1, Point2D pt2)
+		public override bool MoveRestriction (Cell destCell, Player [] _player)
 		{
 			return true;
 		}

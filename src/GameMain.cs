@@ -4,10 +4,10 @@ using SwinGameSDK;
 
 namespace MyGame
 {
-    public class GameMain
+    public static class GameMain
     {
 		static Board gameBoard;
-		static int turn = 1;
+		public static int turn = 1;
 		public static void InitializeGame ()
 		{
 			GameResources.LoadPieces ();
@@ -46,7 +46,7 @@ namespace MyGame
 					c.Draw ();
 				
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-					gameBoard.SelectCell (SwinGame.MousePosition (), turn);
+					gameBoard.SelectCell (SwinGame.MousePosition ());
 				}
 
 				if (SwinGame.MouseClicked (MouseButton.RightButton)) {
