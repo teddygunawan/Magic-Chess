@@ -27,7 +27,9 @@ namespace MyGame
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.X == x && c.Cell.Y == destCell.Y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == destCell.Y)
 									return false;
 							}
 						}
@@ -39,7 +41,9 @@ namespace MyGame
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.X == x && c.Cell.Y == destCell.Y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == destCell.Y)
 									return false;
 							}
 						}
@@ -53,7 +57,9 @@ namespace MyGame
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.Y == y && c.Cell.X == destCell.X)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.Y == y && c.Cell.X == destCell.X)
 									return false;
 							}
 						}
@@ -65,7 +71,9 @@ namespace MyGame
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.Y == y && c.Cell.X == destCell.X)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.Y == y && c.Cell.X == destCell.X)
 									return false;
 							}
 						}

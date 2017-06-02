@@ -24,32 +24,39 @@ namespace MyGame
 			int x = destCell.X;
 			int y = destCell.Y;
 
-
 			if (Cell.X > destCell.X) {
 				if (Cell.Y > destCell.Y) {
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) { 
-								if (c.Cell.X == x && c.Cell.Y == y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == y)
 									return false;
 							}
 						}
 						x += 70;
 						y += 70;
+						if ((x == Cell.X && Cell.Y == y))
+							return true;
 					} while (Cell.X != x && Cell.Y != y);
-					return true;
+					return false;
 				} else if (Cell.Y < destCell.Y) {
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.X == x && c.Cell.Y == y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == y)
 									return false;
 							}
 						}
 						x += 70;
 						y -= 70;
+						if (x == Cell.X && Cell.Y == y)
+							return true;
 					} while (Cell.X != x && Cell.Y != y);
-					return true;
+					return false;
 				}
 			} 
 			else if (Cell.X < destCell.X) { 
@@ -57,26 +64,34 @@ namespace MyGame
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.X == x && c.Cell.Y == y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == y)
 									return false;
 							}
 						}
 						x -= 70;
 						y += 70;
+						if (x == Cell.X && Cell.Y == y)
+							return true;
 					} while (Cell.X != x && Cell.Y != y);
-					return true;
+					return false;
 				} else if (Cell.Y < destCell.Y) {
 					do {
 						for (int i = 0; i < 2; i++) {
 							foreach (Piece c in _player [i].PieceList) {
-								if (c.Cell.X == x && c.Cell.Y == y)
+								if (destCell.X == x && destCell.Y == y)
+									break;
+								else if (c.Cell.X == x && c.Cell.Y == y)
 									return false;
 							}
 						}
 						x -= 70;
 						y -= 70;
+						if (x == Cell.X && Cell.Y == y)
+							return true;
 					} while (Cell.X != x && Cell.Y != y);
-					return true;
+					return false;
 				}
 				
 			}
@@ -153,7 +168,7 @@ namespace MyGame
 				}
 				
 			}*/
-				
+
 			return false;
 		}
 	}

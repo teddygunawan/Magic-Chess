@@ -13,7 +13,7 @@ namespace MyGame
 			GameResources.LoadPieces ();
 
 			gameBoard = new Board ();
-			gameBoard.InitializePlayer ("John");
+			gameBoard.InitializePlayer ("Player");
 		}
 
 
@@ -28,7 +28,7 @@ namespace MyGame
 			InitializeGame ();
 
 			//Open the game window
-			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
+			SwinGame.OpenGraphicsWindow("GameMain", 900, 600);
 			//SwinGame.ShowSwinGameSplashScreen ();
 
             //Run the game loop
@@ -38,7 +38,7 @@ namespace MyGame
                 SwinGame.ProcessEvents();
 
                 //Clear the screen and draw the framerate
-				SwinGame.ClearScreen(Color.Black);
+				SwinGame.ClearScreen(Color.SaddleBrown);
                 SwinGame.DrawFramerate(0,0);
 
 				gameBoard.Draw ();

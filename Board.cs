@@ -4,9 +4,10 @@ namespace MyGame
 {
 	public class Board
 	{
-		static Cell [,] _cell = new Cell [8, 8];
-		static Player [] _player = new Player[2];
-
+		private Cell [,] _cell = new Cell [8, 8];
+		private Player [] _player = new Player[2];
+		private Char text = 'A';
+		private int num = 0;
 		public Board ()
 		{
 			int x = 0, y = 0;
@@ -69,17 +70,27 @@ namespace MyGame
 
 		public void Draw ()
 		{
+			SwinGame.DrawRectangle (Color.Black, 0, 0, 600, 600);
+			SwinGame.FillRectangle (Color.White, 0, 0, 600, 600);
+
+			int x = 35, y = 35;
+			for (int i = 0; i < 8; i++) {
+				SwinGame.DrawText (text.ToString(),Color.Black, x, 580);
+				SwinGame.DrawText (num.ToString (), Color.Black, 580, y);
+				text++;
+				num++;
+				x += 70;
+				y += 70;
+			}
+				
 			foreach (Cell c in _cell)
 				c.Draw();
 			foreach (Piece c in _player [0].PieceList)
 				c.Draw ();
 			foreach (Piece c in _player [1].PieceList)
 				c.Draw ();
-		}
-
-		public bool CheckCellContainPiece ()
-		{
-			return true;
+			text = 'A';
+			num = 0;
 		}
 
 		public void SelectCell (Point2D clicked)
@@ -88,6 +99,7 @@ namespace MyGame
 				if (clicked.X > c.Cell.X && clicked.X < c.Cell.X + 70) {
 					if (clicked.Y > c.Cell.Y && clicked.Y < c.Cell.Y + 70) {
 						SwinGame.FillRectangle (Color.Yellow, c.Cell.X, c.Cell.Y, 70, 70);
+						c.Draw ();
 						MovePiece (c);
 						return;
 					}
@@ -111,16 +123,12 @@ namespace MyGame
 							if (GameMain.turn == 1 && selectedPiece.MoveRestriction (b, _player)) {
 								selectedPiece.Move (b);
 								GameMain.turn = 0;
-								goto CheckRemovePiece;
 							} 
 							else if (GameMain.turn == 0 && selectedPiece.MoveRestriction (b, _player)) {
 								selectedPiece.Move (b);
 								GameMain.turn = 1;
-								goto CheckRemovePiece;
 							}
-							return;
 
-						CheckRemovePiece:
 							foreach (Piece c in _player [GameMain.turn].PieceList) {
 								if (c.Cell == b) {
 									_player [GameMain.turn].RemovePiece (c);
