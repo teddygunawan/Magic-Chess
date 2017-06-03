@@ -27,7 +27,10 @@ namespace MyGame
 				foreach (Piece c in _player [0].PieceList) {
 					if (c.Cell == destCell) {
 						if (MoveAttack (destCell)) {
-							return true;
+							if (destCell.Y == 0) {
+								goto DoPromotion;
+							} else
+								return true;
 						} else
 							return false;
 					}
@@ -37,7 +40,11 @@ namespace MyGame
 				foreach (Piece c in _player [1].PieceList) {
 					if (c.Cell == destCell) {
 						if (MoveAttack (destCell)) {
-							return true;
+							if (destCell.Y == 0) {
+								goto DoPromotion;
+							}
+							else
+								return true;
 						} else
 							return false;
 						}
@@ -47,8 +54,7 @@ namespace MyGame
 			if (Color == Color.White) {
 				if (destCell.Y == Cell.Y - 70 && destCell.X == Cell.X) {
 					if (destCell.Y == 0) {
-						Promotion (_player);
-						return true;
+						goto DoPromotion;
 					}
 					else
 						return true;
@@ -57,14 +63,17 @@ namespace MyGame
 			else {
 				if (destCell.Y == Cell.Y + 70 && destCell.X == Cell.X)
 					if (destCell.Y == 490) {
-						Move (destCell);
-						Promotion (_player);
-						return true;
+						goto DoPromotion;
 					}
 					else
 						return true;
 			}
 			return false;
+
+		DoPromotion:
+			Move (destCell);
+			Promotion (_player);
+			return true;
 		}
 
 		bool MoveAttack (Cell destCell)

@@ -5,7 +5,7 @@ namespace MyGame
 	public class Board
 	{
 		private Cell [,] _cell = new Cell [8, 8];
-		private Player [] _player = new Player[2];
+		private Player [] _player = new Player [2];
 		private Char text = 'A';
 		private int num = 0;
 		public Board ()
@@ -47,12 +47,12 @@ namespace MyGame
 			for (int i = 0; i < 8; i++) {
 				_player [0].AddPiece (new Pawn (Color.White, _cell [6, i]));
 				_player [1].AddPiece (new Pawn (Color.Black, _cell [1, i]));
-				}
+			}
 			for (int i = 0; i < 8; i += 7) {
 				_player [0].AddPiece (new Rook (Color.White, _cell [7, i]));
 				_player [1].AddPiece (new Rook (Color.Black, _cell [0, i]));
 			}
-			for (int i = 1; i < 8; i += 5) { 
+			for (int i = 1; i < 8; i += 5) {
 				_player [0].AddPiece (new Knight (Color.White, _cell [7, i]));
 				_player [1].AddPiece (new Knight (Color.Black, _cell [0, i]));
 			}
@@ -70,21 +70,20 @@ namespace MyGame
 
 		public void Draw ()
 		{
-			SwinGame.DrawRectangle (Color.Black, 0, 0, 600, 600);
 			SwinGame.FillRectangle (Color.White, 0, 0, 600, 600);
-
+			SwinGame.DrawRectangle (Color.Black, 0, 0, 600, 600);
 			int x = 35, y = 35;
 			for (int i = 0; i < 8; i++) {
-				SwinGame.DrawText (text.ToString(),Color.Black, x, 580);
+				SwinGame.DrawText (text.ToString (), Color.Black, x, 580);
 				SwinGame.DrawText (num.ToString (), Color.Black, 580, y);
 				text++;
 				num++;
 				x += 70;
 				y += 70;
 			}
-				
+
 			foreach (Cell c in _cell)
-				c.Draw();
+				c.Draw ();
 			foreach (Piece c in _player [0].PieceList)
 				c.Draw ();
 			foreach (Piece c in _player [1].PieceList)
@@ -95,19 +94,19 @@ namespace MyGame
 
 		public void SelectCell (Point2D clicked)
 		{
-			foreach (Piece c in _player[GameMain.turn].PieceList) {
+			foreach (Piece c in _player [GameMain.turn].PieceList) {
 				if (clicked.X > c.Cell.X && clicked.X < c.Cell.X + 70) {
 					if (clicked.Y > c.Cell.Y && clicked.Y < c.Cell.Y + 70) {
 						SwinGame.FillRectangle (Color.Yellow, c.Cell.X, c.Cell.Y, 70, 70);
 						c.Draw ();
-						MovePiece (c);
+						CheckMovePiece (c);
 						return;
 					}
 				}
 			}
 		}
 
-		public void MovePiece (Piece selectedPiece)
+		public void CheckMovePiece (Piece selectedPiece)
 		{
 			while (false == SwinGame.WindowCloseRequested ()) {
 				SwinGame.ProcessEvents ();
@@ -120,25 +119,117 @@ namespace MyGame
 									return;
 							}
 
-							if (GameMain.turn == 1 && selectedPiece.MoveRestriction (b, _player)) {
-								selectedPiece.Move (b);
-								GameMain.turn = 0;
-							} 
-							else if (GameMain.turn == 0 && selectedPiece.MoveRestriction (b, _player)) {
-								selectedPiece.Move (b);
-								GameMain.turn = 1;
+							if (selectedPiece.MoveRestriction (b, _player)) {
+								MovePiece (selectedPiece, b);
 							}
 
-							foreach (Piece c in _player [GameMain.turn].PieceList) {
-								if (c.Cell == b) {
-									_player [GameMain.turn].RemovePiece (c);
-									break;
-								}
-							}
+
 							return;
 						}
 					}
 				}
+				SwinGame.RefreshScreen (60);
+			}
+		}
+
+		private void MovePiece (Piece selectedPiece, Cell destCell)
+		{
+			if (GameMain.turn == 1)
+				GameMain.turn = 0;
+			else
+				GameMain.turn = 1;
+			
+			selectedPiece.Move (destCell);
+			foreach (Piece c in _player [GameMain.turn].PieceList) {
+				if (c.Cell == destCell) {
+					_player [GameMain.turn].RemovePiece (c);
+					break;
+				}
+			}
+			return;
+		}
+
+		public void AIMove ()
+		{
+			Random RNG = new Random ();
+			int randNum;
+
+			do {
+				foreach (Piece c in _player [1].PieceList) {
+					randNum = RNG.Next (0, _player [1].PieceList.Count - 1);
+					foreach (Cell b in _cell) {
+						foreach (Piece d in _player [1].PieceList) {
+							if (d.Cell == b)
+								goto NextLoop;
+							else
+								continue;
+						}
+
+						if (_player [1].PieceList [randNum].GetType () == typeof (Pawn)) {
+							if ((_player [1].PieceList [randNum] as Pawn).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						} else if (_player [1].PieceList [randNum].GetType () == typeof (Knight)) {
+							if ((_player [1].PieceList [randNum] as Knight).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						} else if (_player [1].PieceList [randNum].GetType () == typeof (King)) {
+							if ((_player [1].PieceList [randNum] as King).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						} else if (_player [1].PieceList [randNum].GetType () == typeof (Bishop)) {
+							if ((_player [1].PieceList [randNum] as Bishop).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						} else if (_player [1].PieceList [randNum].GetType () == typeof (Rook)) {
+							if ((_player [1].PieceList [randNum] as Rook).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						} else if (_player [1].PieceList [randNum].GetType () == typeof (Queen)) {
+							if ((_player [1].PieceList [randNum] as Queen).MoveRestriction (b, _player)) {
+								MovePiece (_player [1].PieceList [randNum], b);
+								return;
+							}
+						}
+					NextLoop:
+						continue;
+					}
+				}
+			} while (GameMain.turn == 1);
+		}
+
+		public void CheckWin ()
+		{
+			bool gameFinished = true;
+			string text;
+			foreach (Piece c in _player [GameMain.turn].PieceList) {
+				if (c.GetType () == typeof (King)){
+					gameFinished = false;
+				}
+			}
+
+
+			if (gameFinished) {
+				if (GameMain.turn == 1) {
+					text = "You Win!";
+					goto GameEnded;
+				} else {
+					text = "You Lose!";
+					goto GameEnded;
+				}
+			}
+			return;
+
+		GameEnded:
+			while (false == SwinGame.WindowCloseRequested ()) {
+				SwinGame.ClearScreen (Color.Black);
+				SwinGame.ProcessEvents ();
+				SwinGame.DrawText (text, Color.White, 400, 250);
 				SwinGame.RefreshScreen (60);
 			}
 		}

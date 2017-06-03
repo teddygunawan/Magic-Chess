@@ -7,7 +7,7 @@ namespace MyGame
     public static class GameMain
     {
 		static Board gameBoard;
-		public static int turn = 1;
+		public static int turn = 0;
 		public static void InitializeGame ()
 		{
 			GameResources.LoadPieces ();
@@ -17,9 +17,10 @@ namespace MyGame
 		}
 
 
-		public static void DrawGame ()
+		public static void DrawSideBar ()
 		{
-			
+			SwinGame.DrawLine (Color.Black, 600, 140, 900, 140);
+			SwinGame.DrawLine (Color.Black, 600, 460, 900, 460);
 		}
 
         public static void Main()
@@ -38,16 +39,19 @@ namespace MyGame
                 SwinGame.ProcessEvents();
 
                 //Clear the screen and draw the framerate
-				SwinGame.ClearScreen(Color.SaddleBrown);
+				SwinGame.ClearScreen(Color.Lavender);
                 SwinGame.DrawFramerate(0,0);
-
+				gameBoard.CheckWin();
 				gameBoard.Draw ();
-				foreach (Coordinate c in someCoordinate)
-					c.Draw ();
-				
+				DrawSideBar ();
+				if (turn == 1)
+					gameBoard.AIMove ();
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
 					gameBoard.SelectCell (SwinGame.MousePosition ());
 				}
+
+				foreach (Coordinate c in someCoordinate)
+					c.Draw ();
 
 				if (SwinGame.MouseClicked (MouseButton.RightButton)) {
 					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());

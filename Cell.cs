@@ -22,10 +22,6 @@ namespace MyGame
 			SwinGame.DrawRectangle (Color.Black, X, Y, 70, 70);
 		}
 
-		public void SelectedCell (Point2D clicked)
-		{
-		}
-
 		public Color Color { 
 			get { return _clr;}
 			set { _clr = value;}
