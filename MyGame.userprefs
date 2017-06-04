@@ -5,19 +5,17 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pawn.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Player.cs">
     <Files>
       <File FileName="src\GameMain.cs" Line="30" Column="53" />
       <File FileName="Magic.cs" Line="75" Column="3" />
-      <File FileName="Board.cs" Line="255" Column="5" />
+      <File FileName="Board.cs" Line="48" Column="4" />
       <File FileName="Player.cs" Line="26" Column="26" />
       <File FileName="Coordinate.cs" Line="23" Column="4" />
       <File FileName="Cell.cs" Line="33" Column="3" />
       <File FileName="GameResources.cs" Line="29" Column="55" />
       <File FileName="Piece.cs" Line="36" Column="28" />
       <File FileName="MagicType.cs" Line="7" Column="18" />
-      <File FileName="UnitTesting.cs" Line="50" Column="52" />
-      <File FileName="Pawn.cs" Line="153" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
 </Properties>
