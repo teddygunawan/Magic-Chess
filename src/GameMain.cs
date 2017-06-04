@@ -32,7 +32,6 @@ namespace MyGame
 
         public static void Main()
         {
-			List<Coordinate> someCoordinate = new List<Coordinate>();
 			InitializeGame ();
 
 			//Open the game window
@@ -61,14 +60,6 @@ namespace MyGame
 						gameBoard.CastMagic (MagicType.Invulnerability);
 					else
 						gameBoard.SelectCell (SwinGame.MousePosition ());
-				}
-
-				foreach (Coordinate c in someCoordinate)
-					c.Draw ();
-
-				if (SwinGame.MouseClicked (MouseButton.RightButton)) {
-					Coordinate xy = new Coordinate (SwinGame.MouseX (), SwinGame.MouseY ());
-					someCoordinate.Add (xy);
 				}
 
                 //Draw onto the screen
