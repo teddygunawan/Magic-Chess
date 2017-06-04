@@ -4,8 +4,8 @@ namespace MyGame
 {
 	public class Magic
 	{
-		bool reviveUsed;
-		bool invulnerabilityUsed;
+		private bool reviveUsed;
+		private bool invulnerabilityUsed;
 		public Magic ()
 		{
 			reviveUsed = false;

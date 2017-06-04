@@ -4,7 +4,7 @@ namespace MyGame
 {
 	public class Pawn: Piece
 	{
-		bool firstMove;
+		private bool firstMove;
 		public Pawn (Color clr, Cell cl): base(clr, cl)
 		{
 			firstMove = true;

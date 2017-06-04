@@ -5,17 +5,15 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="King.cs">
     <Files>
-      <File FileName="src\GameMain.cs" Line="30" Column="53" />
-      <File FileName="Magic.cs" Line="75" Column="3" />
-      <File FileName="Board.cs" Line="48" Column="4" />
-      <File FileName="Player.cs" Line="26" Column="26" />
-      <File FileName="Coordinate.cs" Line="23" Column="4" />
-      <File FileName="Cell.cs" Line="33" Column="3" />
-      <File FileName="GameResources.cs" Line="29" Column="55" />
-      <File FileName="Piece.cs" Line="36" Column="28" />
-      <File FileName="MagicType.cs" Line="7" Column="18" />
+      <File FileName="src\GameMain.cs" Line="26" Column="1" />
+      <File FileName="King.cs" Line="32" Column="19" />
+      <File FileName="Knight.cs" Line="6" Column="3" />
+      <File FileName="Pawn.cs" Line="153" Column="4" />
+      <File FileName="Queen.cs" Line="25" Column="4" />
+      <File FileName="Rook.cs" Line="25" Column="4" />
+      <File FileName="Bishop.cs" Line="42" Column="43" />
     </Files>
   </MonoDevelop.Ide.Workbench>
 </Properties>

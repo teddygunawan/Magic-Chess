@@ -4,9 +4,9 @@ namespace MyGame
 {
 	public abstract class Piece
 	{
-		Color _clr;
-		Cell _cell;
-		bool _immunity;
+		private Color _clr;
+		private Cell _cell;
+		private bool _immunity;
 		public Piece (Color clr, Cell cl)
 		{
 			_clr = clr;

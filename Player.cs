@@ -5,13 +5,12 @@ namespace MyGame
 {
 	public class Player
 	{
-		List<Piece> _piece = new List<Piece> ();
-		string _name;
-		Piece _lastRemoved;
-
+		private List<Piece> _piece = new List<Piece> ();
+		private Piece _lastRemoved;
+		private string _playerName;
 		public Player (string name)
 		{
-			_name = name;
+			_playerName = name;
 			_lastRemoved = null;
 		}
 
@@ -33,6 +32,11 @@ namespace MyGame
 		public Piece LastRemoved{
 			get { return _lastRemoved;}
 			set { _lastRemoved = value;}
+		}
+
+		public string PlayerName { 
+			get { return _playerName;}
+			set { _playerName = value;}
 		}
 	}
 }
