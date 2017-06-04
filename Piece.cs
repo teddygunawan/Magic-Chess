@@ -6,7 +6,7 @@ namespace MyGame
 	{
 		Color _clr;
 		Cell _cell;
-
+		bool _immunity;
 		public Piece (Color clr, Cell cl)
 		{
 			_clr = clr;
@@ -31,5 +31,9 @@ namespace MyGame
 			set { _cell = value;}
 		}
 
+		public bool Immunity { 
+			get { return _immunity;}
+			set { _immunity = value;}
+		}
 	}
 }

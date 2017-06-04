@@ -85,6 +85,9 @@
     <Compile Include="Rook.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="GameResources.cs" />
+    <Compile Include="Magic.cs" />
+    <Compile Include="MagicType.cs" />
+    <Compile Include="UnitTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -93,6 +96,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="nunit.framework">
+      <HintPath>packages\NUnit.3.7.0\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\animations\startup.txt">
@@ -214,6 +220,19 @@
     <None Include="Resources\images\QueenW.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\images\AI.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\Human.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\Invulnerability.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\images\Revive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />

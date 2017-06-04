@@ -6,6 +6,7 @@ namespace MyGame
 	{
 		private Cell [,] _cell = new Cell [8, 8];
 		private Player [] _player = new Player [2];
+		private Magic playerMagic = new Magic ();
 		private Char text = 'A';
 		private int num = 0;
 		public Board ()
@@ -134,18 +135,30 @@ namespace MyGame
 
 		private void MovePiece (Piece selectedPiece, Cell destCell)
 		{
+			
 			if (GameMain.turn == 1)
 				GameMain.turn = 0;
 			else
 				GameMain.turn = 1;
 			
-			selectedPiece.Move (destCell);
 			foreach (Piece c in _player [GameMain.turn].PieceList) {
 				if (c.Cell == destCell) {
-					_player [GameMain.turn].RemovePiece (c);
-					break;
+					if (c.Immunity == true) {
+						while (false == SwinGame.WindowCloseRequested ()) {
+							SwinGame.ProcessEvents ();
+							SwinGame.DrawText ("Your soldier no longer immune!", Color.Black, 605, 280);
+							c.Immunity = false;
+							if (SwinGame.MouseClicked (MouseButton.LeftButton))
+								return;
+							SwinGame.RefreshScreen (60);
+						}
+					} else {
+						_player [GameMain.turn].RemovePiece (c);
+						break;
+					}
 				}
 			}
+			selectedPiece.Move (destCell);
 			return;
 		}
 
@@ -232,6 +245,14 @@ namespace MyGame
 				SwinGame.DrawText (text, Color.White, 400, 250);
 				SwinGame.RefreshScreen (60);
 			}
+		}
+
+		public void CastMagic (MagicType castedMagic)
+		{
+			if (castedMagic == MagicType.Revive)
+				playerMagic.Revive (_player);
+			else
+				playerMagic.Invulnerability (_player);
 		}
 	}
 }
