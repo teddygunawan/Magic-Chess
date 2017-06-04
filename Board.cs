@@ -7,8 +7,8 @@ namespace MyGame
 		private Cell [,] _cell = new Cell [8, 8];
 		private Player [] _player = new Player [2];
 		private Magic playerMagic = new Magic ();
-		private Char text = 'A';
-		private int num = 0;
+		private Char boardText = 'A';
+		private int boardNumber = 0;
 		public Board ()
 		{
 			int x = 0, y = 0;
@@ -75,10 +75,10 @@ namespace MyGame
 			SwinGame.DrawRectangle (Color.Black, 0, 0, 600, 600);
 			int x = 35, y = 35;
 			for (int i = 0; i < 8; i++) {
-				SwinGame.DrawText (text.ToString (), Color.Black, x, 580);
-				SwinGame.DrawText (num.ToString (), Color.Black, 580, y);
-				text++;
-				num++;
+				SwinGame.DrawText (boardText.ToString (), Color.Black, x, 580);
+				SwinGame.DrawText (boardNumber.ToString (), Color.Black, 580, y);
+				boardText++;
+				boardNumber++;
 				x += 70;
 				y += 70;
 			}
@@ -89,8 +89,8 @@ namespace MyGame
 				c.Draw ();
 			foreach (Piece c in _player [1].PieceList)
 				c.Draw ();
-			text = 'A';
-			num = 0;
+			boardText = 'A';
+			boardNumber = 0;
 		}
 
 		public void SelectCell (Point2D clicked)
