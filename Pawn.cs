@@ -20,14 +20,15 @@ namespace MyGame
 
 		public override bool MoveRestriction (Cell destCell, Player [] _player)
 		{
-			if (firstMove)
-				return FirstMovement (destCell);
-			
+			if (firstMove) {
+				if (FirstMovement (destCell))
+					return true;
+			}
 			if (GameMain.turn == 1) {
 				foreach (Piece c in _player [0].PieceList) {
 					if (c.Cell == destCell) {
 						if (MoveAttack (destCell)) {
-							if (destCell.Y == 0) {
+							if (destCell.Y == 490) {
 								goto DoPromotion;
 							} else
 								return true;
@@ -47,7 +48,7 @@ namespace MyGame
 								return true;
 						} else
 							return false;
-						}
+					}
 				}
 			}
 
@@ -103,59 +104,52 @@ namespace MyGame
 					return true;
 				}
 			}
-
-
+			firstMove = false;
 			return false;
 		}
 
 		public void Promotion (Player [] _player)
 		{
+			if (GameMain.turn == 1) {
+				var RNG = new Random();
+				int selectedPiece = RNG.Next (0, 1);
+
+				if (selectedPiece == 0) 
+					_player [1].AddPiece (new Queen (Color, Cell));
+				else 
+					_player [1].AddPiece (new Knight (Color, Cell));
+				
+				_player [1].PieceList.Remove (this);
+				return;
+			}
 			SwinGame.FillRectangle (Color.SandyBrown, 140, 210, 280, 140);
 			SwinGame.DrawRectangle (Color.Black, 140, 210, 280, 140);
-
-			if (GameMain.turn == 1) {
-				SwinGame.DrawBitmap (GameResources.PieceImage ("QB"), 145, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("KnB"), 215, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("RB"), 285, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("BB"), 345, 240);
-			} 
-			else { 
-				SwinGame.DrawBitmap (GameResources.PieceImage ("QW"), 145, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("KnW"), 215, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("RW"), 285, 240);
-				SwinGame.DrawBitmap (GameResources.PieceImage ("BW"), 345, 240);
-			}
-				
+			SwinGame.DrawBitmap (GameResources.PieceImage ("QW"), 145, 240);
+			SwinGame.DrawBitmap (GameResources.PieceImage ("KnW"), 215, 240);
+			SwinGame.DrawBitmap (GameResources.PieceImage ("RW"), 285, 240);
+			SwinGame.DrawBitmap (GameResources.PieceImage ("BW"), 345, 240);
 
 			while (false == SwinGame.WindowCloseRequested ()) {
 				SwinGame.ProcessEvents ();
 				if (SwinGame.MouseClicked (MouseButton.LeftButton) && SwinGame.MouseY () >= 250 && SwinGame.MouseY () <= 300) {
 					if (SwinGame.MouseX () >= 150 && SwinGame.MouseX () <= 210) {
-						_player [GameMain.turn].PieceList.Add (new Queen (Color, Cell));
+						_player [GameMain.turn].AddPiece(new Queen (Color, Cell));
 						_player [GameMain.turn].PieceList.Remove (this);
 						return;
 					} else if (SwinGame.MouseX () >= 225 && SwinGame.MouseX () <= 275) {
-						_player [GameMain.turn].PieceList.Add (new Knight (Color, Cell));
+						_player [GameMain.turn].AddPiece(new Knight (Color, Cell));
 						_player [GameMain.turn].PieceList.Remove (this);
 						return;
 					} else if (SwinGame.MouseX () >= 300 && SwinGame.MouseX () <= 340) {
-						_player [GameMain.turn].PieceList.Add (new Rook (Color, Cell));
+						_player [GameMain.turn].AddPiece (new Rook (Color, Cell));
 						_player [GameMain.turn].PieceList.Remove (this);
 						return;
 					} else if (SwinGame.MouseX () >= 355 && SwinGame.MouseX () <= 405) {
-						_player [GameMain.turn].PieceList.Add (new Bishop (Color, Cell));
+						_player [GameMain.turn].AddPiece (new Bishop (Color, Cell));
 						_player [GameMain.turn].PieceList.Remove (this);
 						return;
 					}
 				}
-
-				if (SwinGame.MouseClicked (MouseButton.RightButton)){
-					SwinGame.DrawTextOnScreen (SwinGame.MouseX ().ToString (), Color.Black, SwinGame.MouseX (), SwinGame.MouseY());
-				}
-				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-					SwinGame.DrawTextOnScreen (SwinGame.MouseY ().ToString (), Color.Black, SwinGame.MouseX (), SwinGame.MouseY ());
-				}
-
 
 				SwinGame.RefreshScreen (60);
 			}

@@ -119,12 +119,9 @@ namespace MyGame
 								if (c.Cell == b)
 									return;
 							}
-
 							if (selectedPiece.MoveRestriction (b, _player)) {
 								MovePiece (selectedPiece, b);
 							}
-
-
 							return;
 						}
 					}
@@ -170,14 +167,16 @@ namespace MyGame
 			do {
 				foreach (Piece c in _player [1].PieceList) {
 					randNum = RNG.Next (0, _player [1].PieceList.Count - 1);
+					Piece selectedPiece;
 					foreach (Cell b in _cell) {
+						selectedPiece = _player [1].PieceList [randNum];
 						foreach (Piece d in _player [1].PieceList) {
 							if (d.Cell == b)
 								goto NextLoop;
 							else
 								continue;
 						}
-
+						/*
 						if (_player [1].PieceList [randNum].GetType () == typeof (Pawn)) {
 							if ((_player [1].PieceList [randNum] as Pawn).MoveRestriction (b, _player)) {
 								MovePiece (_player [1].PieceList [randNum], b);
@@ -208,6 +207,10 @@ namespace MyGame
 								MovePiece (_player [1].PieceList [randNum], b);
 								return;
 							}
+						}*/
+						if (selectedPiece.MoveRestriction (b, _player)){
+							MovePiece (selectedPiece, b);
+							return;
 						}
 					NextLoop:
 						continue;
@@ -216,15 +219,32 @@ namespace MyGame
 			} while (GameMain.turn == 1);
 		}
 
-		public void CheckWin ()
+		public void CheckKing ()
 		{
 			bool gameFinished = true;
+			Cell kingCell;
 			string text;
 			foreach (Piece c in _player [GameMain.turn].PieceList) {
 				if (c.GetType () == typeof (King)){
 					gameFinished = false;
+					kingCell = c.Cell;
+					break;
 				}
 			}
+			foreach (Piece c in _player [1].PieceList) {
+				if (c.MoveRestriction (kingCell, _player)) {
+					while (false == SwinGame.WindowCloseRequested ()) {
+						SwinGame.ProcessEvents ();
+						SwinGame.FillRectangle (Color.White, 270, 200, 150, 150);
+						SwinGame.DrawRectangle (Color.White, 270, 200, 150, 150);
+						SwinGame.DrawText ("CHECK!", Color.Black, 335, 275);
+						if (SwinGame.MouseClicked (MouseButton.LeftButton))
+							break;
+						SwinGame.RefreshScreen (60);
+					}
+				}
+			}
+
 
 
 			if (gameFinished) {

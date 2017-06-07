@@ -47,7 +47,7 @@ namespace MyGame
                 //Clear the screen and draw the framerate
 				SwinGame.ClearScreen(Color.DarkGray);
                 SwinGame.DrawFramerate(0,0);
-				gameBoard.CheckWin();
+				gameBoard.CheckKing();
 				gameBoard.Draw ();
 				DrawSideBar ();
 				if (turn == 1)

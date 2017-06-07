@@ -22,6 +22,7 @@ namespace MyGame
 			int x = destCell.X;
 			int y = destCell.Y;
 
+
 			if (Cell.Y == destCell.Y) {
 				if (Cell.X > destCell.X) {
 					do {
