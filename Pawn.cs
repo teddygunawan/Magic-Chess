@@ -77,7 +77,7 @@ namespace MyGame
 			return true;
 		}
 
-		bool MoveAttack (Cell destCell)
+		public bool MoveAttack (Cell destCell)
 		{
 			if (Color == Color.White) {
 				if (destCell.Y == Cell.Y - 70 && (destCell.X == Cell.X - 70 || destCell.X == Cell.X + 70))
@@ -90,7 +90,7 @@ namespace MyGame
 			return false;
 		}
 
-		bool FirstMovement (Cell destCell)
+		public bool FirstMovement (Cell destCell)
 		{
 			if (Color == Color.White) {
 				if ((destCell.Y == Cell.Y - 70 || destCell.Y == Cell.Y - 140) && destCell.X == Cell.X) {

@@ -4,9 +4,10 @@ namespace MyGame
 {
 	public class Rook: Piece
 	{
+		private bool _castling;
 		public Rook (Color clr, Cell cl): base(clr, cl)
 		{
-
+			_castling = true;
 		}
 
 		public override void Draw ()
@@ -22,6 +23,8 @@ namespace MyGame
 			int x = destCell.X;
 			int y = destCell.Y;
 
+			if (_castling)
+				_castling = false;
 			if (Cell.Y == destCell.Y) {
 				if (Cell.X > destCell.X) {
 					do {
@@ -83,6 +86,11 @@ namespace MyGame
 				}
 			}
 			return false;
+		}
+
+		public bool Castling {
+			get { return _castling; }
+			set { _castling = value; }
 		}
 	}
 }

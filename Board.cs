@@ -68,7 +68,6 @@ namespace MyGame
 			_player [1].AddPiece (new King (Color.Black, _cell [0, 4]));
 		}
 
-
 		public void Draw ()
 		{
 			SwinGame.FillRectangle (Color.White, 0, 0, 600, 600);
@@ -119,6 +118,10 @@ namespace MyGame
 								if (c.Cell == b)
 									return;
 							}
+							if (selectedPiece.GetType () == typeof (King) && (selectedPiece as King).Castling) {
+								if ((selectedPiece as King).DoCastling (b, _player, _cell))
+									MovePiece (selectedPiece, b);
+							}
 							if (selectedPiece.MoveRestriction (b, _player)) {
 								MovePiece (selectedPiece, b);
 							}
@@ -156,6 +159,7 @@ namespace MyGame
 				}
 			}
 			selectedPiece.Move (destCell);
+			CheckKing ();
 			return;
 		}
 
@@ -176,38 +180,6 @@ namespace MyGame
 							else
 								continue;
 						}
-						/*
-						if (_player [1].PieceList [randNum].GetType () == typeof (Pawn)) {
-							if ((_player [1].PieceList [randNum] as Pawn).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						} else if (_player [1].PieceList [randNum].GetType () == typeof (Knight)) {
-							if ((_player [1].PieceList [randNum] as Knight).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						} else if (_player [1].PieceList [randNum].GetType () == typeof (King)) {
-							if ((_player [1].PieceList [randNum] as King).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						} else if (_player [1].PieceList [randNum].GetType () == typeof (Bishop)) {
-							if ((_player [1].PieceList [randNum] as Bishop).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						} else if (_player [1].PieceList [randNum].GetType () == typeof (Rook)) {
-							if ((_player [1].PieceList [randNum] as Rook).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						} else if (_player [1].PieceList [randNum].GetType () == typeof (Queen)) {
-							if ((_player [1].PieceList [randNum] as Queen).MoveRestriction (b, _player)) {
-								MovePiece (_player [1].PieceList [randNum], b);
-								return;
-							}
-						}*/
 						if (selectedPiece.MoveRestriction (b, _player)){
 							MovePiece (selectedPiece, b);
 							return;
@@ -222,31 +194,29 @@ namespace MyGame
 		public void CheckKing ()
 		{
 			bool gameFinished = true;
-			Cell kingCell;
-			string text;
+			string text = "";
 			foreach (Piece c in _player [GameMain.turn].PieceList) {
 				if (c.GetType () == typeof (King)){
 					gameFinished = false;
-					kingCell = c.Cell;
+					foreach (Piece d in _player [1].PieceList) {
+						foreach (Piece e in _player [GameMain.turn].PieceList) {
+							if (e.Cell == d.Cell)
+								goto continueLoop;
+						}
+						if (d.MoveRestriction (c.Cell, _player)) {
+							goto KingChecked;
+						} else if (d.GetType () == typeof (Pawn)) {
+							if ((d as Pawn).MoveAttack (c.Cell))
+								goto KingChecked;
+						}
+					continueLoop:
+						continue;
+					}
 					break;
 				}
 			}
-			foreach (Piece c in _player [1].PieceList) {
-				if (c.MoveRestriction (kingCell, _player)) {
-					while (false == SwinGame.WindowCloseRequested ()) {
-						SwinGame.ProcessEvents ();
-						SwinGame.FillRectangle (Color.White, 270, 200, 150, 150);
-						SwinGame.DrawRectangle (Color.White, 270, 200, 150, 150);
-						SwinGame.DrawText ("CHECK!", Color.Black, 335, 275);
-						if (SwinGame.MouseClicked (MouseButton.LeftButton))
-							break;
-						SwinGame.RefreshScreen (60);
-					}
-				}
-			}
 
-
-
+		OutofLoop:
 			if (gameFinished) {
 				if (GameMain.turn == 1) {
 					text = "You Win!";
@@ -257,6 +227,17 @@ namespace MyGame
 				}
 			}
 			return;
+
+		KingChecked:
+			while (false == SwinGame.WindowCloseRequested ()) {
+				SwinGame.ProcessEvents ();
+				SwinGame.FillRectangle (Color.White, 210, 245, 150, 75);
+				SwinGame.DrawRectangle (Color.Black, 210, 245, 150, 75);
+				SwinGame.DrawText ("CHECK!", Color.Black, 260, 280);
+				if (SwinGame.MouseClicked (MouseButton.LeftButton))
+					goto OutofLoop;
+				SwinGame.RefreshScreen (60);
+			}
 
 		GameEnded:
 			while (false == SwinGame.WindowCloseRequested ()) {
@@ -274,5 +255,6 @@ namespace MyGame
 			else
 				playerMagic.Invulnerability (_player);
 		}
+
 	}
 }

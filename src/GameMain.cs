@@ -47,7 +47,6 @@ namespace MyGame
                 //Clear the screen and draw the framerate
 				SwinGame.ClearScreen(Color.DarkGray);
                 SwinGame.DrawFramerate(0,0);
-				gameBoard.CheckKing();
 				gameBoard.Draw ();
 				DrawSideBar ();
 				if (turn == 1)
@@ -60,6 +59,11 @@ namespace MyGame
 						gameBoard.CastMagic (MagicType.Invulnerability);
 					else
 						gameBoard.SelectCell (SwinGame.MousePosition ());
+				}
+
+				if (SwinGame.MouseClicked (MouseButton.RightButton)){
+					SwinGame.DrawText (SwinGame.MouseX ().ToString () + "," + SwinGame.MouseY ().ToString (), Color.Black, SwinGame.MouseX() + 10, SwinGame.MouseY());
+					//SwinGame.Delay (50);
 				}
 
                 //Draw onto the screen
