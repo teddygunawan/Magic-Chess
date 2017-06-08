@@ -53,13 +53,21 @@ namespace MyGame
 					gameBoard.AIMove ();
 
 				if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-					if ((SwinGame.MouseX () >= 604 && SwinGame.MouseX () <= 705) && (SwinGame.MouseY () >= 150 && SwinGame.MouseY () <= 250))
-						gameBoard.CastMagic (MagicType.Revive);
-					else if ((SwinGame.MouseX () >= 794 && SwinGame.MouseX () <= 865) && (SwinGame.MouseY () >= 165 && SwinGame.MouseY () <= 235))
-						gameBoard.CastMagic (MagicType.Invulnerability);
-					else
-						gameBoard.SelectCell (SwinGame.MousePosition ());
+					gameBoard.SelectCell (SwinGame.MousePosition ());
 				}
+
+				if ((SwinGame.MouseX () >= 604 && SwinGame.MouseX () <= 705) && (SwinGame.MouseY () >= 150 && SwinGame.MouseY () <= 250)) {
+					SwinGame.DrawText ("Revive", Color.Green, SwinGame.MouseX(), SwinGame.MouseY() + 20);
+					if (SwinGame.MouseClicked (MouseButton.LeftButton)) { 
+						gameBoard.CastMagic (MagicType.Revive);
+					}
+				} else if ((SwinGame.MouseX () >= 794 && SwinGame.MouseX () <= 865) && (SwinGame.MouseY () >= 165 && SwinGame.MouseY () <= 235)) { 
+					SwinGame.DrawText ("Invulnerability", Color.Green, SwinGame.MouseX() - 40, SwinGame.MouseY() + 20);
+					if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+						gameBoard.CastMagic (MagicType.Invulnerability);
+					}
+				}
+
 
 				if (SwinGame.MouseClicked (MouseButton.RightButton)){
 					SwinGame.DrawText (SwinGame.MouseX ().ToString () + "," + SwinGame.MouseY ().ToString (), Color.Black, SwinGame.MouseX() + 10, SwinGame.MouseY());

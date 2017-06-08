@@ -41,7 +41,7 @@ namespace MyGame
 
 		public bool DoCastling (Cell destCell, Player [] _player, Cell[,] cell)
 		{
-			if (destCell.X == Cell.X + 140) {
+			if (destCell.X == Cell.X + 140 && destCell.Y == Cell.Y) {
 				foreach (Piece c in _player [GameMain.turn].PieceList) {
 					if (c.GetType () == typeof (Rook) && (c as Rook).Castling) {
 						foreach (Cell d in cell) {
@@ -58,7 +58,7 @@ namespace MyGame
 						}
 					}
 				}
-			} else if (destCell.X == Cell.X - 140) {
+			} else if (destCell.X == Cell.X - 140 && destCell.Y == Cell.Y) {
 				foreach (Piece c in _player [GameMain.turn].PieceList) {
 					if (c.GetType () == typeof (Rook) && (c as Rook).Castling) {
 						foreach (Cell d in cell) {

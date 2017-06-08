@@ -69,6 +69,7 @@ namespace MyGame
 							goto CastMessage;
 						}
 					}
+					return;
 				}
 				SwinGame.RefreshScreen (60);
 			}
