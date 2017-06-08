@@ -57,12 +57,12 @@ namespace MyGame
 				}
 
 				if ((SwinGame.MouseX () >= 604 && SwinGame.MouseX () <= 705) && (SwinGame.MouseY () >= 150 && SwinGame.MouseY () <= 250)) {
-					SwinGame.DrawText ("Revive", Color.Green, SwinGame.MouseX(), SwinGame.MouseY() + 20);
+					SwinGame.DrawText ("Revive", Color.Black, SwinGame.MouseX(), SwinGame.MouseY() + 20);
 					if (SwinGame.MouseClicked (MouseButton.LeftButton)) { 
 						gameBoard.CastMagic (MagicType.Revive);
 					}
 				} else if ((SwinGame.MouseX () >= 794 && SwinGame.MouseX () <= 865) && (SwinGame.MouseY () >= 165 && SwinGame.MouseY () <= 235)) { 
-					SwinGame.DrawText ("Invulnerability", Color.Green, SwinGame.MouseX() - 40, SwinGame.MouseY() + 20);
+					SwinGame.DrawText ("Invulnerability", Color.Black, SwinGame.MouseX() - 40, SwinGame.MouseY() + 20);
 					if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
 						gameBoard.CastMagic (MagicType.Invulnerability);
 					}
